@@ -13,9 +13,9 @@ if (!empty($_POST)) {
     } else {
         try {
             $conn = $mySQLObject->mySQLConnect($conn);
-            
+
             $conn->multi_query("INSERT INTO tasks (name, description, imgpath) VALUES ('" . $name . "', '" . $description . "', '" . $photoPath . "'); SET @autoid := 0; UPDATE tasks SET task_id = (@autoid := @autoid + 1);");
-            
+
             header("Location: ../index.php");
             unset($mySQLObject);
             die();

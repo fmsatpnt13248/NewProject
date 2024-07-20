@@ -15,5 +15,3 @@ try {
 } catch (PDOException $e) {
     echo("Query failed: " . $e);
 }
-
-

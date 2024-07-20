@@ -50,7 +50,9 @@
             <input type="file" id="photo_input" name="photo">
         </div>
         <div>
-            <?php if (!empty($_GET['error'])) echo '<p style="color:red; text-align:center;">Name field is empty!!</p>';?>
+            <?php if (!empty($_GET['error'])) {
+                echo '<p style="color:red; text-align:center;">Name field is empty!!</p>';
+            }?>
             <button type="submit">Save</button>
         </div>
     </form>

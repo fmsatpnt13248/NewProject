@@ -6,16 +6,16 @@ include 'includes/connection.php';
 
 if (isset($_GET['id'])) {
     $taskId = $_GET['id'];
-    
+
     $mySQLObject = new MySQLConnection();
     $result = $mySQLObject->mySQLSelect($result, $taskId);
-    
+
     $userdata = [
         "id" => $taskId,
         "name" => $result['name'],
         "description" => $result['description']
     ];
-    
+
     $_SESSION["user_data"] = $userdata;
     unset($mySQLObject);
 }
@@ -67,7 +67,11 @@ if (isset($_GET['id'])) {
         </div>
         <div>
             <label for="description">Description</label>
-            <textarea id="description" name="description"><?php if ($_SESSION["user_data"]['description'] != null) echo htmlspecialchars($_SESSION["user_data"]['description']); ?></textarea>
+            <textarea id="description" name="description">
+                <?php if ($_SESSION["user_data"]['description'] != null) {
+                    echo htmlspecialchars($_SESSION["user_data"]['description']);
+                }?>
+            </textarea>
         </div>
         <div>
             <label for="photo-checkbox">
@@ -78,7 +82,9 @@ if (isset($_GET['id'])) {
             <input type="file" id="photo_input" name="photo" disabled>
         </div>
         <div>
-            <?php if (!empty($_GET['error'])) echo '<p style="color:red; text-align:center;">Name field is empty!!</p>';?>
+            <?php if (!empty($_GET['error'])) {
+                echo '<p style="color:red; text-align:center;">Name field is empty!!</p>';
+            }?>
             <button type="submit">Save</button>
         </div>
     </form>

@@ -21,6 +21,6 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == UPLOAD_ERR_OK) {
     } else {
         $photoPath = '';
     }
-    } else {
-        $photoPath = '';
-    }
+} else {
+    $photoPath = '';
+}

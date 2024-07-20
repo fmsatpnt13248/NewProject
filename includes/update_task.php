@@ -16,17 +16,16 @@ if (!empty($_POST)) {
     } else {
         try {
             $conn = $mySQLObject->mySQLConnect($conn);
-            
+
             if (!empty($checkboxState) || $checkboxState != null) {
                 include_once 'photo_upload.php';
                 $conn->multi_query("UPDATE tasks SET name='" . $name . "',`description`='" . $description . "',`imgpath`='" . $photoPath . "' WHERE task_id =" . $id . "; SET @autoid := 0; UPDATE tasks SET task_id = (@autoid := @autoid + 1);");
             } else {
                 $conn->multi_query("UPDATE tasks SET name='" . $name . "',`description`='" . $description . "' WHERE task_id =" . $id . "; SET @autoid := 0; UPDATE tasks SET task_id = (@autoid := @autoid + 1);");
             }
-            
-            
+
             session_unset();
-            
+
             header("Location: ../index.php");
             unset($mySQLObject);
             die();
@@ -38,4 +37,3 @@ if (!empty($_POST)) {
     //echo '<p style="color:red; text-align:center;">POST method is empty!!</p>';
 }
 header("Location: ../edit_task.php");
-
